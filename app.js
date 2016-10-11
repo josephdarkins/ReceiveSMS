@@ -14,9 +14,9 @@ app.get('/', function(req, res) {
 
 app.post('/messageSMS', function(req, res) {
     
-    var query = req.url.parse(req.url,true).query;
+    //var query = req.url.parse(req.url,true).query;
     //res.end(JSON.stringify(query));
-    console.log('input: %s', JSON.stringify(query));
+    console.log('input: %s', req.url);
     
     res.send('You have successfully sent an SMS');
 
