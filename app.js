@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+var port = process.env.PORT || 3000;
+
 //app.use(express.bodyParser());
 
 app.get('/', function(req, res) {
@@ -12,6 +14,6 @@ app.post('/messageSMS', function(req, res) {
     res.send('You have successfully sent an SMS');
 });
 
-app.listen(8000, function () {
+app.listen(port, function () {
   console.log('Example app listening on port 8000!');
 });
