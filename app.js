@@ -1,11 +1,16 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser')
 
 var port = process.env.PORT || 3000;
 
-var inputURL
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-//app.use(express.bodyParser());
+app.use(bodyParser.json());
+
+
 
 app.get('/', function(req, res) {
     res.send('Hello World!');
@@ -16,10 +21,10 @@ app.post('/messageSMS', function(req, res) {
     
     //var query = req.url.parse(req.url,true).query;
     //res.end(JSON.stringify(query));
-    console.log('URL: %s', req.url);
-    console.log('body: %s', req.body);
-    console.log('params: %s', req.params);
-    console.log('originalURL: %s', req.originalURL);
+    //console.log(req.url);
+    console.log(req.body);
+    //console.log(req.params);
+    //console.log(req.originalURL);
     
     res.send('You have successfully sent an SMS');
 
@@ -27,5 +32,5 @@ app.post('/messageSMS', function(req, res) {
 });
 
 app.listen(port, function () {
-  console.log('Example app listening on port 8000!');
+  console.log('Example app listening on port 3000!');
 });
