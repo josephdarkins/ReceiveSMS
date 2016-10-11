@@ -1,0 +1,13 @@
+{
+  "name": "webhookapp",
+  "version": "0.1.0",
+  "description": "Webhook Server with CRUD",
+  "dependencies": {
+    "express": "~4.x.x",
+    "body-parser": "~1.0.x",
+    "node-rest-client": "~1.5.x"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
