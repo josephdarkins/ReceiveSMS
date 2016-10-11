@@ -3,6 +3,8 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
+var inputURL
+
 //app.use(express.bodyParser());
 
 app.get('/', function(req, res) {
@@ -10,7 +12,11 @@ app.get('/', function(req, res) {
 });
 
 app.post('/messageSMS', function(req, res) {
-    console.log('input: %s', req.url);
+    
+    var query = url.parse(req.url,true).query;
+    //res.end(JSON.stringify(query));
+    console.log('input: %s', JSON.stringify(query));
+    
     res.send('You have successfully sent an SMS');
 });
 
