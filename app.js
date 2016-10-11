@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var moment = require('moment');
 
 var port = process.env.PORT || 3000;
 
@@ -19,18 +20,19 @@ app.get('/', function(req, res) {
 
 app.post('/messageSMS', function(req, res) {
     
-    //var query = req.url.parse(req.url,true).query;
-    //res.end(JSON.stringify(query));
-    //console.log(req.url);
-    console.log(req.body);
-    //console.log(req.params);
-    //console.log(req.originalURL);
+    var inTime = moment(req.body.RECEIVETIME);
+
+    console.log('all params : ' + req.body);
+    console.log('Body : ' + req.body.BODY);
+    console.log('MO number : ' + req.body.MONUMBER);
+    console.log('Destination : ' + req.body.DESTINATION);
+    console.log('Receive time : ' + inTime.format('LLL'));
     
-    res.send('You have successfully sent an SMS');
+    res.send('You have successfully posted an SMS');
 
 
 });
 
 app.listen(port, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('SMS receive app listening on port 3000!');
 });
