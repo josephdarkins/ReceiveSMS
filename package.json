@@ -6,7 +6,8 @@
     "body-parser": "~1.0.x",
     "express": "~4.x.x",
     "moment": "^2.15.1",
-    "node-rest-client": "~1.5.x"
+    "node-rest-client": "~1.5.x",
+    "pg": "^6.1.0"
   },
   "scripts": {
     "start": "node app.js"

@@ -1,35 +1,65 @@
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var dbMethods = require("./db_methods.js")
+var pg = require('pg');
 
-var port = process.env.PORT || 3000;
+var app = express();    
+var port = process.env.PORT || 3000; //define POST variable for Heroku
+/*
+var config = (
+user: 'josephdarkins',
+database: 'webhooks',
+host: 'localhost',
+port: '5432'
+);*/
 
+const connectionString = 'postgres://localhost:5432/webhooks';
+
+const client = new pg.Client(connectionString);
+
+client.connect();
+
+
+
+
+//====================================================================================
+//====================================================================================
+   
+
+
+
+
+
+//====================================================================================
+//====================================================================================
+
+
+
+
+
+
+
+
+
+//used to parse the URL
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
 app.use(bodyParser.json());
 
-
-
-app.get('/', function(req, res) {
-    res.send('Hello World!');
-    console.log('Hello world \n');
-});
-
-app.post('/messageSMS', function(req, res) {
+app.post('/', function(req, res) {
     
-    var inTime = moment(req.body.RECEIVETIME);
+    var inTime = moment(req.body.RECEIVETIME).format('LL');
 
-    console.log('all params : ' + req.body);
     console.log('Body : ' + req.body.BODY);
     console.log('MO number : ' + req.body.MONUMBER);
     console.log('Destination : ' + req.body.DESTINATION);
-    console.log('Receive time : ' + inTime.format('LLL'));
-    
+    console.log('Receive time : ' + inTime); //format the date and time 
+    dbMethods.create_incoming_message(client, req.body.BODY, req.body.MONUMBER, req.body.DESTINATION, inTime);
     res.send('You have successfully posted an SMS');
 
+    //forward MT to a number of m choice
 
 });
 
